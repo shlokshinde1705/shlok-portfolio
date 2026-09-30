@@ -1,0 +1,61 @@
+@import url('https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400&display=swap');
+
+:root {
+  --bg-color: #f4f3ef;
+  --text-color: #121212;
+  --text-secondary: #8c8c8c;
+  --accent: #d34a24;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body, html {
+  font-family: 'Satoshi', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection { background-color: var(--text-color); color: var(--bg-color); }
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-color); }
+::-webkit-scrollbar-thumb { background: rgba(0, 0, 0, 0.2); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(0, 0, 0, 0.4); }
+
+
+
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0; }
+
+.text-huge { font-size: clamp(2.5rem, 10vw, 15rem); line-height: 0.85; font-weight: 700; text-transform: uppercase; letter-spacing: -0.02em; margin: 0; }
+.text-large { font-size: clamp(1.8rem, 5vw, 4rem); line-height: 1.1; font-weight: 500; letter-spacing: -0.02em; }
+.text-body { font-size: 1rem; line-height: 1.5; font-weight: 400; }
+.text-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-secondary); }
+
+.hero-title { position: relative; z-index: 2; }
+.hero-title-line { overflow: hidden; display: block; position: relative; }
+.hero-title-inner { display: block; transform: translateY(100%); }
+
+.nav-link { position: relative; display: inline-block; transition: transform 0.3s ease; }
+.nav-link:hover { transform: translateY(-2px); }
+.nav-link.active::after { content: '●'; position: absolute; bottom: -12px; left: 50%; transform: translateX(-50%); font-size: 8px; color: var(--accent); }
+
+.project-reveal { clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%); transition: clip-path 1.2s cubic-bezier(0.19, 1, 0.22, 1); }
+.project-reveal.revealed { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+
+.btn-magnetic { transition: background 0.3s, border 0.3s; }
+.btn-magnetic:hover .btn-arrow { transform: translate(4px, -4px); }
+
+@keyframes scrollPulse {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(200%); }
+}
+.scroll-pulse { animation: scrollPulse 1.5s infinite linear; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+  .project-reveal { clip-path: none !important; }
+}
+@media (pointer: fine) { body, a, button { cursor: none; } }
