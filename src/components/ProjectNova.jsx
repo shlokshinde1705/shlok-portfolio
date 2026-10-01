@@ -94,16 +94,42 @@ export default function ProjectNova() {
         </div>
 
         {/* Project Statement & Metadata */}
-        <div className="nova-meta-row" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', borderTop: '1px solid #ccc', paddingTop: '3rem' }}>
+        <div className="nova-meta-row" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', borderTop: '1px solid #ccc', paddingTop: '3rem' }}>
           
-          <div className="nova-text-reveal" style={{ width: '45%' }}>
-            <h3 className="text-large" style={{ fontSize: 'clamp(1.5rem, 2vw, 2rem)', color: '#111', marginBottom: '1.5rem' }}>RESEARCH WITHOUT<br/>THE TAB CHAOS.</h3>
-            <p className="text-body" style={{ color: '#555', fontSize: '1rem', maxWidth: '400px' }}>
-              NOVA is a concept for turning scattered research into a structured workspace where sources, evidence and synthesis stay connected.
+          <div className="nova-text-reveal" style={{ width: '55%', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+            <p className="text-body" style={{ color: '#555', fontSize: '0.9rem', maxWidth: '600px', fontStyle: 'italic' }}>
+              Self-initiated product concept exploring UX strategy, interface design and interaction design.
             </p>
+            
+            <div>
+              <p className="text-label" style={{ fontSize: '0.65rem', color: '#888', letterSpacing: '0.1em', marginBottom: '0.5rem', fontWeight: 600 }}>THE PROBLEM</p>
+              <p className="text-body" style={{ color: '#111', fontSize: '1rem', maxWidth: '600px' }}>
+                Research workflows often scatter sources, notes, comparisons and synthesis across multiple tools.
+              </p>
+            </div>
+
+            <div>
+              <p className="text-label" style={{ fontSize: '0.65rem', color: '#888', letterSpacing: '0.1em', marginBottom: '0.5rem', fontWeight: 600 }}>THE GOAL & UX FLOW</p>
+              <p className="text-body" style={{ color: '#111', fontSize: '1rem', maxWidth: '600px', marginBottom: '0.5rem' }}>
+                Create a focused workspace that helps users move from discovering sources to comparing evidence, understanding information and synthesizing findings.
+              </p>
+              <p className="text-label" style={{ color: 'var(--accent)', fontSize: '0.75rem', fontWeight: 600, letterSpacing: '0.05em' }}>
+                SOURCE → COMPARE → UNDERSTAND → SYNTHESIZE
+              </p>
+            </div>
+
+            <div>
+              <p className="text-label" style={{ fontSize: '0.65rem', color: '#888', letterSpacing: '0.1em', marginBottom: '0.5rem', fontWeight: 600 }}>DESIGN DECISIONS</p>
+              <ul className="text-body" style={{ color: '#555', fontSize: '0.9rem', paddingLeft: '1.2rem', margin: 0, maxWidth: '600px', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                <li>Left sidebar provides persistent research organization.</li>
+                <li>Central workspace keeps the main research task focused.</li>
+                <li>Right-side evidence/synthesis panel provides contextual support without taking the user away from the workspace.</li>
+                <li>Clear hierarchy separates source material from generated synthesis.</li>
+              </ul>
+            </div>
           </div>
 
-          <div className="nova-text-reveal nova-meta-details" style={{ display: 'flex', gap: '4rem', paddingBottom: '0.5rem' }}>
+          <div className="nova-text-reveal nova-meta-details" style={{ display: 'flex', flexDirection: 'column', gap: '2rem', width: '35%' }}>
             <div>
               <p style={{ fontSize: '0.65rem', color: '#888', letterSpacing: '0.1em', marginBottom: '0.5rem' }}>ROLE</p>
               <p style={{ fontSize: '0.8rem', color: '#111', fontWeight: 600, letterSpacing: '0.05em' }}>PRODUCT DESIGN / UI / UX</p>
