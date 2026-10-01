@@ -68,17 +68,17 @@ export default function Process() {
   return (
     <section id="process" ref={containerRef} style={{ display: 'flex', flexDirection: 'column', backgroundColor: 'var(--bg-color)', position: 'relative' }}>
       
-      <div style={{ display: 'flex', padding: '10rem 3rem 8rem' }}>
-        <div style={{ flex: 1 }}>
+      <div className="process-container" style={{ display: 'flex', padding: '10rem 3rem 8rem' }}>
+        <div className="process-left" style={{ flex: 1 }}>
           <div style={{ position: 'sticky', top: '10rem' }}>
             <h2 className="process-intro-reveal text-label">05 / PROCESS</h2>
             <h3 className="process-intro-reveal text-large" style={{ marginTop: '0.5rem' }}>HOW I WORK</h3>
           </div>
         </div>
         
-        <div style={{ flex: 1, position: 'relative', paddingBottom: '20vh', paddingTop: '5vh' }}>
+        <div className="process-right" style={{ flex: 1, position: 'relative', paddingBottom: '20vh', paddingTop: '5vh' }}>
           {/* Continuous Timeline Line */}
-          <div style={{ position: 'absolute', left: '-2.5rem', top: '10vh', bottom: '20vh', width: '1px', background: '#e0e0e0' }}></div>
+          <div className="process-line" style={{ position: 'absolute', left: '-2.5rem', top: '10vh', bottom: '20vh', width: '1px', background: '#e0e0e0' }}></div>
           
           <div style={{ display: 'flex', flexDirection: 'column', gap: '25vh' }}>
             {steps.map((step, i) => (
@@ -113,6 +113,16 @@ export default function Process() {
       <style dangerouslySetInnerHTML={{__html: `
         .process-step.active .process-indicator { opacity: 1 !important; }
         .process-step.active .process-visual { opacity: 1 !important; transform: translateY(0) !important; }
+        
+        @media (max-width: 1024px) {
+          .process-container { flex-direction: column !important; padding: 5rem 1.5rem 5rem !important; gap: 4rem; }
+          .process-left { position: static !important; }
+          .process-left > div { position: relative !important; top: 0 !important; }
+          .process-right { padding-left: 3rem !important; padding-top: 0 !important; padding-bottom: 5vh !important; }
+          .process-line { left: 0.5rem !important; top: 0 !important; bottom: 0 !important; }
+          .process-indicator { left: 0.25rem !important; }
+          .process-number-bg { font-size: 8rem !important; top: -20% !important; }
+        }
       `}} />
     </section>
   );

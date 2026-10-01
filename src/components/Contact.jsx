@@ -34,7 +34,7 @@ export default function Contact() {
   }, []);
 
   return (
-    <section id="contact" ref={containerRef} style={{ position: 'relative', height: '100vh', width: '100vw', backgroundColor: '#121212', color: '#fff', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center' }}>
+    <section id="contact" ref={containerRef} style={{ position: 'relative', height: '100vh', width: '100%', backgroundColor: '#121212', color: '#fff', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center' }}>
       
       <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 1 }}>
         <Canvas camera={{ position: [0, 0, 8], fov: 45 }} dpr={[1, 2]}>

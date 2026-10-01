@@ -48,10 +48,10 @@ export default function About() {
         </h2>
       </div>
 
-      <div style={{ padding: '4rem 3rem 10rem', display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: '4rem' }}>
+      <div className="about-grid" style={{ padding: '4rem 3rem 10rem', display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: '4rem' }}>
         
         {/* Left Column (Label + Statement) */}
-        <div style={{ gridColumn: '1 / 8' }}>
+        <div className="about-left" style={{ gridColumn: '1 / 8' }}>
           <p className="text-label about-reveal" style={{ marginBottom: '2rem' }}>06 / ABOUT</p>
           <h2 className="about-reveal" style={{ fontSize: 'clamp(2.5rem, 4vw, 4.5rem)', fontWeight: 400, lineHeight: 1.1, letterSpacing: '-0.02em', marginBottom: '4rem' }}>
             I WORK BETWEEN THE<br/>
@@ -62,7 +62,7 @@ export default function About() {
           <div className="about-reveal" style={{ display: 'flex', gap: '4rem', borderTop: '1px solid #d0d0d0', paddingTop: '2rem' }}>
             <div>
               <p className="text-label" style={{ marginBottom: '1rem', color: '#888' }}>IDENTITY</p>
-              <p style={{ fontSize: '1rem', fontWeight: 500, lineHeight: 1.6 }}>SHLOK SHINDE<br/>Digital Product Design<br/>× Creative Development</p>
+              <p style={{ fontSize: '1rem', fontWeight: 500, lineHeight: 1.6 }}>SHLOK SHINDE<br/>Digital Product Design<br/>A- Creative Development</p>
             </div>
             <div>
               <p className="text-label" style={{ marginBottom: '1rem', color: '#888' }}>LOCATION & BACKGROUND</p>
@@ -72,7 +72,7 @@ export default function About() {
         </div>
 
         {/* Right Column (Skills & Portrait Crop) */}
-        <div style={{ gridColumn: '9 / 13', display: 'flex', flexDirection: 'column', gap: '4rem' }}>
+        <div className="about-right" style={{ gridColumn: '9 / 13', display: 'flex', flexDirection: 'column', gap: '4rem' }}>
           
           {/* Subtle cropped portrait with interaction */}
           <div 
@@ -153,6 +153,14 @@ export default function About() {
         </h2>
       </div>
 
+      <style dangerouslySetInnerHTML={{__html: `
+        @media (max-width: 1024px) {
+          .about-grid { display: flex !important; flexDirection: column !important; padding: 4rem 1.5rem 6rem !important; gap: 4rem !important; flex-wrap: wrap !important; }
+          .about-left { gridColumn: auto !important; width: 100% !important; }
+          .about-right { gridColumn: auto !important; width: 100% !important; }
+          .about-left > div { flex-direction: column !important; gap: 2rem !important; }
+        }
+      `}} />
     </section>
   );
 }
