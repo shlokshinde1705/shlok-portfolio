@@ -74,42 +74,15 @@ export default function ProjectPulse() {
         
         <div style={{ width: '85vw', display: 'flex', flexDirection: 'column', gap: '2rem' }}>
           {/* Intro Text */}
-          <div className="pulse-intro-text" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', width: '100%', gap: '2rem' }}>
-            <div style={{ width: '40%' }}>
-              <p className="pulse-intro-reveal text-label" style={{ marginBottom: '0.5rem' }}>03 / PULSE</p>
-              <h2 className="pulse-intro-reveal text-large" style={{ fontSize: 'clamp(2rem, 3.5vw, 3.5rem)', marginBottom: '0.5rem', color: '#111', lineHeight: 1.1 }}>OPERATIONS COMMAND CENTER</h2>
-              <p className="pulse-intro-reveal text-body" style={{ color: '#555', fontSize: '0.85rem', fontStyle: 'italic', marginBottom: '1.5rem' }}>Self-initiated product concept exploring UX strategy, interface design and interaction design.</p>
-              <p className="pulse-intro-reveal pulse-status-text text-body" style={{ color: 'var(--accent)', fontWeight: 600, letterSpacing: '0.05em', fontSize: '0.8rem' }}>STATE: PROJECT OVERVIEW</p>
-            </div>
-
-            <div className="pulse-intro-reveal" style={{ width: '55%', display: 'flex', gap: '2rem' }}>
-              <div style={{ flex: 1 }}>
-                <p className="text-label" style={{ fontSize: '0.65rem', color: '#888', letterSpacing: '0.1em', marginBottom: '0.5rem', fontWeight: 600 }}>PROBLEM & GOAL</p>
-                <p className="text-body" style={{ color: '#333', fontSize: '0.85rem', marginBottom: '0.5rem' }}>
-                  <strong>Problem:</strong> Project teams need to understand project health, workload, deadlines and risks without searching through multiple tools.<br/><br/>
-                  <strong>Goal:</strong> Create an operations command center that turns scattered project information into an understandable overview.
-                </p>
-                <p className="text-label" style={{ color: 'var(--accent)', fontSize: '0.7rem', fontWeight: 600, letterSpacing: '0.05em', marginTop: '1rem' }}>
-                  HEALTH → CAPACITY → TIMELINE → RISKS → ACTION
-                </p>
-              </div>
-
-              <div style={{ flex: 1.2 }}>
-                <p className="text-label" style={{ fontSize: '0.65rem', color: '#888', letterSpacing: '0.1em', marginBottom: '0.5rem', fontWeight: 600 }}>DESIGN DECISIONS</p>
-                <ul className="text-body" style={{ color: '#555', fontSize: '0.85rem', paddingLeft: '1.2rem', margin: 0, display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
-                  <li>High-level health indicators provide immediate orientation.</li>
-                  <li>Team capacity exposes workload before it becomes a problem.</li>
-                  <li>Timeline creates temporal context.</li>
-                  <li>Risks are visually separated so important issues are not buried.</li>
-                  <li>Activity provides supporting context rather than competing with primary information.</li>
-                </ul>
-              </div>
-            </div>
+          <div className="pulse-intro-text" style={{ alignSelf: 'flex-start' }}>
+            <p className="pulse-intro-reveal text-label" style={{ marginBottom: '0.5rem' }}>03 / PULSE</p>
+            <h2 className="pulse-intro-reveal text-large" style={{ fontSize: 'clamp(2rem, 4vw, 4rem)', marginBottom: '0.5rem', color: '#111' }}>OPERATIONS COMMAND CENTER</h2>
+            <p className="pulse-intro-reveal pulse-status-text text-body" style={{ color: '#666', fontWeight: 600, letterSpacing: '0.05em' }}>STATE: PROJECT OVERVIEW</p>
           </div>
 
           {/* Dashboard Product UI Wrapper for entrance animation */}
           <div className="pulse-ui-entrance">
-            <div ref={uiRef} style={{ width: '100%', height: '55vh', backgroundColor: '#0a0a0a', borderRadius: '12px', display: 'flex', overflow: 'hidden', color: '#e0e0e0', boxShadow: '0 40px 100px rgba(0,0,0,0.15)', border: '1px solid #222' }}>
+            <div ref={uiRef} style={{ width: '100%', height: '65vh', backgroundColor: '#0a0a0a', borderRadius: '12px', display: 'flex', overflow: 'hidden', color: '#e0e0e0', boxShadow: '0 40px 100px rgba(0,0,0,0.15)', border: '1px solid #222' }}>
           
           {/* Sidebar */}
           <div style={{ width: '80px', backgroundColor: '#111', borderRight: '1px solid #222', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '2rem 0', gap: '2rem' }}>

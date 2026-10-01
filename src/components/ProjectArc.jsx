@@ -67,27 +67,10 @@ export default function ProjectArc() {
       {/* Priority Controls */}
       <div className="arc-controls" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
         <h2 className="arc-intro-reveal text-label" style={{ color: '#8c8c8c' }}>04 / ARC</h2>
-        <h3 className="arc-intro-reveal text-large" style={{ marginTop: '0.5rem', fontSize: 'clamp(2rem, 3vw, 3rem)' }}>INTERACTION CONCEPT</h3>
-        <p className="arc-intro-reveal text-body" style={{ color: '#8c8c8c', marginBottom: '1rem' }}>URBAN MOBILITY EXPERIENCE</p>
-        <p className="arc-intro-reveal text-body" style={{ color: '#555', fontSize: '0.8rem', fontStyle: 'italic', marginBottom: '2rem' }}>Self-initiated product concept exploring UX strategy, interface design and interaction design.</p>
-        
-        <div className="arc-intro-reveal" style={{ marginBottom: '2rem' }}>
-          <p className="text-body" style={{ color: '#ccc', fontSize: '0.85rem', marginBottom: '1rem' }}>
-            <strong>Problem:</strong> People choosing urban transport do not always have the same priority. One person may value speed, another cost, and another minimal walking.<br/><br/>
-            <strong>Goal:</strong> Design a mobility experience that lets users choose the trade-off that matters to them.
-          </p>
-          <p className="text-body" style={{ color: '#aaa', fontSize: '0.85rem', marginBottom: '1rem' }}>
-            <strong>UX Thinking & Interaction:</strong> Instead of assuming one route is universally best, ARC makes the user's priority explicit. Changing the priority mode changes the route recommendation and supporting journey information.
-          </p>
-          <ul className="text-body" style={{ color: '#888', fontSize: '0.8rem', paddingLeft: '1.2rem', margin: '0', display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
-            <li>Priority modes make the user's preference explicit.</li>
-            <li>Route information is presented alongside the map rather than hidden in another screen.</li>
-            <li>Time, transfers, walking and price are surfaced as decision-making information.</li>
-          </ul>
-        </div>
-
-        <p className="arc-intro-reveal text-label" style={{ marginBottom: '1rem', color: '#666' }}>CHOOSE PRIORITY</p>
-        <div className="arc-intro-reveal" style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+        <h3 className="arc-intro-reveal text-large" style={{ marginTop: '0.5rem' }}>INTERACTION CONCEPT</h3>
+        <p className="arc-intro-reveal text-body" style={{ color: '#8c8c8c', marginBottom: '3rem' }}>URBAN MOBILITY EXPERIENCE</p>
+        <p className="arc-intro-reveal text-label" style={{ marginBottom: '1.5rem', color: '#666' }}>CHOOSE PRIORITY</p>
+        <div className="arc-intro-reveal" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
           {['FASTEST', 'CHEAPEST', 'LEAST WALKING'].map(m => {
             const key = m === 'LEAST WALKING' ? 'LEAST_WALKING' : m;
             const isSelected = mode === key;
@@ -97,7 +80,7 @@ export default function ProjectArc() {
                   onClick={() => setMode(key)}
                   style={{
                     background: 'none', border: 'none', color: isSelected ? '#fff' : '#555', display: 'flex', alignItems: 'center', gap: '1rem',
-                    fontSize: '1.5rem', fontWeight: 500, textAlign: 'left', transition: 'all 0.3s cubic-bezier(0.2, 0, 0.2, 1)',
+                    fontSize: '2rem', fontWeight: 500, textAlign: 'left', transition: 'all 0.3s cubic-bezier(0.2, 0, 0.2, 1)',
                     transform: isSelected ? 'translateX(10px)' : 'none'
                   }}
                   onMouseEnter={(e) => { if(!isSelected) e.currentTarget.style.color = '#888'; }}
