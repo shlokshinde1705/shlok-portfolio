@@ -62,7 +62,7 @@ export default function ProjectArc() {
   const transfer = getTransferNode(mode);
 
   return (
-    <section id="arc" ref={containerRef} className="arc-container" style={{ minHeight: '100vh', width: '100%', backgroundColor: '#141414', color: '#fff', position: 'relative', display: 'flex', alignItems: 'center', padding: '0 3rem' }}>
+    <section id="arc" ref={containerRef} data-cursor-bg="dark" className="arc-container" style={{ height: '100vh', width: '100vw', backgroundColor: '#141414', color: '#fff', position: 'relative', display: 'flex', alignItems: 'center', padding: '0 3rem' }}>
       
       {/* Priority Controls */}
       <div className="arc-controls" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
@@ -209,7 +209,7 @@ export default function ProjectArc() {
       <style dangerouslySetInnerHTML={{__html: `
         .arc-container { flex-direction: row; }
         .arc-controls { flex: 1; padding-right: 2rem; }
-        .arc-map-container { flex: 2; height: 85vh; min-height: 500px; }
+        .arc-map-container { flex: 2; height: 85%; min-height: 500px; }
         .arc-panel { top: 2rem; bottom: 2rem; right: 2rem; width: 310px; }
         .arc-route-wrapper { right: 350px; }
         

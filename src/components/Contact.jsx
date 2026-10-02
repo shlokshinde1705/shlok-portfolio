@@ -34,7 +34,7 @@ export default function Contact() {
   }, []);
 
   return (
-    <section id="contact" ref={containerRef} style={{ position: 'relative', height: '100vh', width: '100%', backgroundColor: '#121212', color: '#fff', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center' }}>
+    <section id="contact" ref={containerRef} data-cursor-bg="dark" style={{ position: 'relative', height: '100vh', width: '100vw', backgroundColor: '#121212', color: '#fff', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center' }}>
       
       <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 1 }}>
         <Canvas camera={{ position: [0, 0, 8], fov: 45 }} dpr={[1, 2]}>
@@ -62,8 +62,8 @@ export default function Contact() {
         <div>SHLOK SHINDE<br/>MUMBAI, INDIA</div>
         <div style={{ display: 'flex', gap: '2rem' }}>
           <a href="mailto:hello@shlokshinde.com" style={{ color: '#fff', textDecoration: 'none' }}>EMAIL</a>
-          <a href="https://www.linkedin.com/in/shlok-shinde-b293b12a4" style={{ color: '#fff', textDecoration: 'none' }}>LINKEDIN</a>
-          <a href="https://github.com/shlokshinde1705" style={{ color: '#fff', textDecoration: 'none' }}>GITHUB</a>
+          <a href="#" style={{ color: '#fff', textDecoration: 'none' }}>LINKEDIN</a>
+          <a href="#" style={{ color: '#fff', textDecoration: 'none' }}>GITHUB</a>
         </div>
         <div>2026</div>
       </footer>

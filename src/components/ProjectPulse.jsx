@@ -81,7 +81,7 @@ export default function ProjectPulse() {
           </div>
 
           {/* Dashboard Product UI Wrapper for entrance animation */}
-          <div className="pulse-ui-entrance">
+          <div className="pulse-ui-entrance" data-cursor-bg="dark">
             <div ref={uiRef} style={{ width: '100%', height: '65vh', backgroundColor: '#0a0a0a', borderRadius: '12px', display: 'flex', overflow: 'hidden', color: '#e0e0e0', boxShadow: '0 40px 100px rgba(0,0,0,0.15)', border: '1px solid #222' }}>
           
           {/* Sidebar */}
@@ -96,7 +96,7 @@ export default function ProjectPulse() {
           {/* Main Content Area */}
           <div style={{ flex: 1, padding: '3rem', display: 'flex', flexDirection: 'column', gap: '2rem' }}>
             
-            <div className="pulse-health-risk" style={{ display: 'flex', gap: '2rem', height: '40%' }}>
+            <div style={{ display: 'flex', gap: '2rem', height: '40%' }}>
               {/* Health */}
               <div className="pulse-health" style={{ flex: 1, backgroundColor: '#161616', borderRadius: '8px', border: '1px solid #2a2a2a', padding: '2rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                 <p style={{ fontSize: '0.75rem', color: '#888', letterSpacing: '0.05em' }}>SYSTEM HEALTH</p>
@@ -144,16 +144,7 @@ export default function ProjectPulse() {
         </div> {/* Closing the 85vw wrapper */}
 
       </div>
-
-      <style dangerouslySetInnerHTML={{__html: `
-        @media (max-width: 1024px) {
-          .pulse-intro-text { flex-direction: column !important; }
-          .pulse-intro-text > div { width: 100% !important; }
-          .pulse-ui-entrance > div { flex-direction: column !important; height: auto !important; min-height: 80vh !important; }
-          .pulse-ui-entrance > div > div:first-child { width: 100% !important; flex-direction: row !important; height: 60px !important; padding: 0 1rem !important; border-right: none !important; border-bottom: 1px solid #222 !important; }
-          .pulse-health-risk { flex-direction: column !important; height: auto !important; }
-        }
-      `}} />
     </section>
   );
 }
+

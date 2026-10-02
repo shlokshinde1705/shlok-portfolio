@@ -50,6 +50,9 @@ export default function CustomCursor() {
 
     let rafId;
 
+    let targetLuminance = 18; // Default to #121212 (black)
+    let currentLuminance = 18;
+
     const render = () => {
       // Spring physics
       pos.x += (mouse.x - pos.x) * 0.25;
@@ -65,14 +68,29 @@ export default function CustomCursor() {
       while (history.length > currentMaxHistory) {
         history.shift();
       }
+      
+      // Hit testing for background color
+      if (hasMoved) {
+        const el = document.elementFromPoint(mouse.x, mouse.y);
+        if (el) {
+          const darkContainer = el.closest('[data-cursor-bg="dark"]');
+          targetLuminance = darkContainer ? 255 : 18; // 255 = White, 18 = #121212 Black
+        }
+      }
+
+      // Smoothly animate the color transition (approx 150-250ms)
+      currentLuminance += (targetLuminance - currentLuminance) * 0.15;
+      
+      const lum = Math.round(currentLuminance);
+      const brushColor = `rgb(${lum}, ${lum}, ${lum})`;
 
       ctx.clearRect(0, 0, width, height);
 
-      // Draw trail (Thick at mouse, thin trailing end)
+      // Draw trail
       if (history.length > 2) {
         ctx.lineCap = 'round';
         ctx.lineJoin = 'round';
-        ctx.strokeStyle = '#121212';
+        ctx.strokeStyle = brushColor;
         
         for (let i = 0; i < history.length - 1; i++) {
           ctx.beginPath();
@@ -89,10 +107,7 @@ export default function CustomCursor() {
           
           ctx.quadraticCurveTo(history[i].x, history[i].y, xc, yc);
           
-          // progress = 0 at the tail (oldest), progress = 1 at the tip (newest/mouse)
           const progress = i / (history.length - 1);
-          
-          // thickness is 0.5 at the tail (progress=0), and 8 at the tip (progress=1)
           const thickness = 8 * Math.pow(progress, 1.5); 
           
           ctx.lineWidth = Math.max(0.5, thickness);
@@ -103,7 +118,7 @@ export default function CustomCursor() {
       // Draw thick brush head at the actual mouse position
       ctx.beginPath();
       ctx.arc(pos.x, pos.y, 4, 0, Math.PI * 2);
-      ctx.fillStyle = '#121212';
+      ctx.fillStyle = brushColor;
       ctx.fill();
 
       rafId = requestAnimationFrame(render);

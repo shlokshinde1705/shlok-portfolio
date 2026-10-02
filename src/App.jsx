@@ -16,6 +16,8 @@ import About from './components/About';
 import Contact from './components/Contact';
 import './styles/global.css';
 
+import About3DExperiment from './components/About3DExperiment';
+
 gsap.registerPlugin(ScrollTrigger); if (window.history.scrollRestoration) { window.history.scrollRestoration = 'manual'; } window.scrollTo(0, 0);
 
 function App() {
@@ -48,13 +50,9 @@ function App() {
 
   useEffect(() => {
     if (!loading) {
-      // Use requestAnimationFrame to ensure DOM is fully painted
       requestAnimationFrame(() => {
         setTimeout(() => {
           ScrollTrigger.refresh();
-          if (window.location.hash && window.lenis && performance.getEntriesByType('navigation')[0]?.type !== 'reload') {
-            window.lenis.scrollTo(window.location.hash, { immediate: true });
-          }
         }, 100);
       });
     }
@@ -63,19 +61,9 @@ function App() {
   return (
     <>
       <CustomCursor />
-      <ScrollProgress />
       {loading && <Preloader onComplete={() => { setLoading(false); }} />}
-      
       <main>
-        <Navbar />
-        <Hero />
-        <WorkIntro />
-        <ProjectNova />
-        <ProjectPulse />
-        <ProjectArc />
-        <Process />
-        <About />
-        <Contact />
+        {!loading && <About3DExperiment />}
       </main>
     </>
   );

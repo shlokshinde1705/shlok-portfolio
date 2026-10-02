@@ -81,7 +81,7 @@ export default function WorkIntro() {
       {/* Background Visual System (Technical Grid & Geometric Form) */}
       <div className="work-visuals" ref={visualsRef} style={{ position: 'absolute', right: '-5vw', top: '20vh', width: '60vw', height: '60vw', pointerEvents: 'none', zIndex: -1, opacity: 0 }}>
         {/* Subtle coordinate marks */}
-        <div style={{ position: 'absolute', top: 0, left: 0, fontSize: '10px', fontFamily: 'monospace', color: 'rgba(18,18,18,0.2)', letterSpacing: '0.1em' }}></div>
+        <div style={{ position: 'absolute', top: 0, left: 0, fontSize: '10px', fontFamily: 'monospace', color: 'rgba(18,18,18,0.2)', letterSpacing: '0.1em' }}>X: 45.912 / Y: 12.004</div>
         <div style={{ position: 'absolute', bottom: 0, right: '10%', fontSize: '10px', fontFamily: 'monospace', color: 'rgba(18,18,18,0.2)', letterSpacing: '0.1em' }}>SYS_01</div>
         
         {/* Oversized faint geometric form */}

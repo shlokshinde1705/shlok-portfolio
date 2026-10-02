@@ -1,143 +1,175 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 export default function About() {
   const containerRef = useRef(null);
-  const imageRef = useRef(null);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
-    let enterAnim;
-
-    const ctx = gsap.context(() => {
+    gsap.registerPlugin(ScrollTrigger);
+    
+    let ctx = gsap.context(() => {
       
-      gsap.from('.about-reveal', {
-        opacity: 0,
-        y: 40,
-        duration: 0.6,
-        stagger: 0.05,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: containerRef.current,
+      // Statement line-by-line reveal
+      gsap.fromTo('.statement-line', 
+        { y: 60, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.9, stagger: 0.15, ease: 'power3.out', scrollTrigger: {
+          trigger: '.statement-container',
           start: 'top 85%',
-          toggleActions: 'play none none none'
-        }
+        }}
+      );
+
+      // Portrait subtle reveal
+      gsap.fromTo('.about-portrait', 
+        { y: 100, opacity: 0 },
+        { y: 0, opacity: 1, duration: 1.2, ease: 'power3.out', scrollTrigger: {
+          trigger: '.statement-container', // Trigger alongside the statement
+          start: 'top 85%',
+        }}
+      );
+
+      // Other content stagger
+      gsap.fromTo('.about-fade', 
+        { y: 30, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.8, stagger: 0.15, ease: 'power3.out', scrollTrigger: {
+          trigger: '.about-fade-container',
+          start: 'top 85%',
+        }}
+      );
+
+      // Marquee continuous animation
+      gsap.to('.marquee-inner', {
+        xPercent: -50,
+        ease: 'none',
+        duration: 30,
+        repeat: -1
       });
       
     }, containerRef);
     return () => ctx.revert();
   }, []);
 
-  const handleMouseMove = (e) => {
-    if (!imageRef.current) return;
-    const { left, top, width, height } = imageRef.current.getBoundingClientRect();
-    const x = (e.clientX - left) / width - 0.5;
-    const y = (e.clientY - top) / height - 0.5;
-    setMousePos({ x, y });
-  };
+  const capabilities = [
+    { num: '01', title: 'PRODUCT DESIGN', desc: 'Turning complex problems into clear product experiences.' },
+    { num: '02', title: 'UI / UX', desc: 'Structuring interfaces around clarity, hierarchy and usability.' },
+    { num: '03', title: 'INTERACTION DESIGN', desc: 'Designing motion and interaction that gives interfaces a sense of life.' },
+    { num: '04', title: 'CREATIVE DEVELOPMENT', desc: 'Combining design, animation and code to create expressive web experiences.' },
+    { num: '05', title: 'FRONTEND DEVELOPMENT', desc: 'Building responsive interfaces with React and modern frontend technologies.' }
+  ];
 
   return (
-    <section id="about" ref={containerRef} style={{ backgroundColor: '#e5e4df', color: 'var(--text-color)', position: 'relative', width: '100%', overflow: 'hidden' }}>
+    <section id="about" ref={containerRef} style={{ backgroundColor: 'var(--bg-color)', color: 'var(--text-color)', position: 'relative', width: '100%', overflow: 'hidden' }}>
       
-      {/* ARC -> ABOUT Transition Bridge */}
-      <div style={{ minHeight: '15vh', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', alignItems: 'center', textAlign: 'center', padding: '10rem 3rem 2rem' }}>
-        <h2 className="text-huge about-reveal" style={{ fontSize: 'clamp(2rem, 5vw, 5rem)', lineHeight: 1.1, marginBottom: '1rem' }}>
-          THREE PRODUCTS.<br/>
-          <span style={{ color: 'var(--text-secondary)' }}>ONE WAY OF THINKING.</span>
-        </h2>
-      </div>
-
-      <div className="about-grid" style={{ padding: '4rem 3rem 10rem', display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: '4rem' }}>
+      {/* LOCAL IMPORT FOR BOLD DISPLAY FONT TO ENSURE AVAILABILITY */}
+      <style dangerouslySetInnerHTML={{__html: `
+        @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap');
         
-        {/* Left Column (Label + Statement) */}
-        <div className="about-left" style={{ gridColumn: '1 / 8' }}>
-          <p className="text-label about-reveal" style={{ marginBottom: '2rem' }}>06 / ABOUT</p>
-          <h2 className="about-reveal" style={{ fontSize: 'clamp(2.5rem, 4vw, 4.5rem)', fontWeight: 400, lineHeight: 1.1, letterSpacing: '-0.02em', marginBottom: '4rem' }}>
-            I WORK BETWEEN THE<br/>
-            STRUCTURE OF SOFTWARE<br/>
-            AND THE FEELING OF DESIGN.
-          </h2>
+        .display-font-about { 
+          font-family: 'Archivo Black', 'Arial Black', 'Impact', sans-serif; 
+          font-weight: 400; 
+        }
+
+        .cap-row {
+          transition: transform 0.4s cubic-bezier(0.2, 0, 0.2, 1);
+          cursor: default;
+        }
+        .cap-row:hover {
+          transform: translateX(12px);
+        }
+        .cap-icon {
+          transition: transform 0.4s cubic-bezier(0.2, 0, 0.2, 1);
+          display: inline-block;
+        }
+        .cap-row:hover .cap-icon {
+          transform: rotate(45deg);
+        }
+        .cap-desc {
+          max-height: 0;
+          opacity: 0;
+          overflow: hidden;
+          transition: max-height 0.4s cubic-bezier(0.2, 0, 0.2, 1), opacity 0.4s, margin-top 0.4s;
+        }
+        .cap-row:hover .cap-desc {
+          max-height: 100px;
+          opacity: 1;
+          margin-top: 1rem;
+        }
+
+        /* Desktop specific portrait overlap */
+        @media (min-width: 1025px) {
+          .about-portrait {
+            margin-top: -3rem; /* Slight layout overlap */
+          }
+        }
+
+        @media (max-width: 1024px) {
+          .about-grid { display: flex !important; flex-direction: column !important; gap: 4rem !important; }
+          .about-portrait { width: 100% !important; max-width: 500px; margin: 0 auto; }
+          .about-id-cap { flex-direction: column !important; gap: 4rem !important; }
+        }
+      `}} />
+
+      <div style={{ padding: '8rem 5vw 4rem', maxWidth: '2000px', margin: '0 auto' }}>
+        
+        <div className="about-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: '4rem', marginBottom: '8rem' }}>
           
-          <div className="about-reveal" style={{ display: 'flex', gap: '4rem', borderTop: '1px solid #d0d0d0', paddingTop: '2rem' }}>
-            <div>
-              <p className="text-label" style={{ marginBottom: '1rem', color: '#888' }}>IDENTITY</p>
-              <p style={{ fontSize: '1rem', fontWeight: 500, lineHeight: 1.6 }}>SHLOK SHINDE<br/>Digital Product Design<br/>A- Creative Development</p>
+          {/* LEFT: 06 / ABOUT & HUGE STATEMENT */}
+          <div className="statement-container" style={{ gridColumn: '1 / 9' }}>
+            <div style={{ overflow: 'hidden' }}>
+              <p className="statement-line" style={{ fontSize: '1.2rem', fontWeight: 700, letterSpacing: '0.1em', marginBottom: '3rem' }}>
+                06 / ABOUT
+              </p>
             </div>
-            <div>
-              <p className="text-label" style={{ marginBottom: '1rem', color: '#888' }}>LOCATION & BACKGROUND</p>
-              <p style={{ fontSize: '1rem', fontWeight: 500, lineHeight: 1.6, color: 'var(--text-secondary)' }}>Information Technology<br/>Mumbai, India<br/>2026</p>
+            
+            <h2 className="display-font-about" style={{ fontSize: 'clamp(3rem, 6.5vw, 7rem)', lineHeight: 0.95, textTransform: 'uppercase', margin: 0, letterSpacing: '-0.02em' }}>
+              <div style={{ overflow: 'hidden', paddingBottom: '0.1em' }}><div className="statement-line">I WORK BETWEEN THE</div></div>
+              <div style={{ overflow: 'hidden', paddingBottom: '0.1em' }}><div className="statement-line">STRUCTURE OF SOFTWARE</div></div>
+              <div style={{ overflow: 'hidden', paddingBottom: '0.1em' }}><div className="statement-line">AND THE FEELING OF DESIGN.</div></div>
+            </h2>
+          </div>
+
+          {/* RIGHT: PORTRAIT */}
+          <div style={{ gridColumn: '9 / 13', display: 'flex', alignItems: 'flex-start', justifyContent: 'flex-end' }}>
+            <div className="about-portrait" style={{ width: '100%', aspectRatio: '3/4', overflow: 'hidden', border: '1px solid rgba(0,0,0,0.1)' }}>
+              <img src="/shlok-portrait.png" alt="Shlok Shinde" style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'grayscale(100%) contrast(1.1)' }} />
             </div>
           </div>
         </div>
 
-        {/* Right Column (Skills & Portrait Crop) */}
-        <div className="about-right" style={{ gridColumn: '9 / 13', display: 'flex', flexDirection: 'column', gap: '4rem' }}>
+        {/* BOTTOM SECTION: IDENTITY + CAPABILITIES */}
+        <div className="about-fade-container about-id-cap" style={{ display: 'flex', justifyContent: 'space-between', gap: '8rem', marginBottom: '6rem' }}>
           
-          {/* Subtle cropped portrait with interaction */}
-          <div 
-            ref={imageRef}
-            className="about-reveal" 
-            onMouseMove={window.innerWidth > 768 ? handleMouseMove : null}
-            onMouseLeave={() => setMousePos({ x: 0, y: 0 })}
-            style={{ 
-              width: '100%', 
-              aspectRatio: '4/3', 
-              overflow: 'hidden', 
-              backgroundColor: '#d0d0d0',
-              position: 'relative',
-              borderRadius: '2px'
-            }}
-          >
-            <img 
-              src="/shlok-portrait.png" 
-              alt="Shlok Shinde" 
-              style={{ 
-                width: '100%', 
-                height: '100%', 
-                objectFit: 'cover', filter: 'grayscale(75%) contrast(1.15) brightness(0.95)', 
-                objectPosition: 'center 20%', 
-                filter: 'grayscale(100%) contrast(1.1)',
-                transition: 'transform 0.4s cubic-bezier(0.2, 0, 0.2, 1)',
-                transform: `scale(1.05) translate(${mousePos.x * 12}px, ${mousePos.y * 12}px)`,
-                pointerEvents: 'none'
-              }} 
-            />
+          {/* IDENTITY */}
+          <div className="about-fade" style={{ flex: '0 0 300px' }}>
+            <h3 className="display-font-about" style={{ fontSize: '2rem', marginBottom: '1.5rem', letterSpacing: '-0.02em' }}>SHLOK SHINDE</h3>
+            <p style={{ fontSize: '1.1rem', fontWeight: 600, lineHeight: 1.5, marginBottom: '1.5rem' }}>
+              Digital Product Designer<br/>
+              × Creative Developer
+            </p>
+            <p style={{ fontSize: '0.95rem', fontWeight: 500, lineHeight: 1.6, color: 'var(--text-secondary)' }}>
+              B.Tech Information Technology<br/>
+              Vidyalankar Institute of Technology, Mumbai
+            </p>
           </div>
 
-          <div className="about-reveal">
-            <p className="text-label" style={{ marginBottom: '1.5rem', color: '#888' }}>CORE CAPABILITIES</p>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', fontSize: '1rem', fontWeight: 600, letterSpacing: '0.05em' }}>
-              {[
-                { name: 'PRODUCT DESIGN', secondary: false },
-                { name: 'UI / UX', secondary: false },
-                { name: 'INTERACTION DESIGN', secondary: false },
-                { name: 'CREATIVE DEVELOPMENT', secondary: false, border: true },
-                { name: 'REACT / GSAP / THREE.JS', secondary: true },
-              ].map((item, i) => (
-                <div 
-                  key={i} 
-                  style={{ 
-                    display: 'flex', 
-                    justifyContent: 'space-between', 
-                    color: item.secondary ? 'var(--text-secondary)' : 'inherit',
-                    borderTop: item.border ? '1px solid #d0d0d0' : 'none',
-                    paddingTop: item.border ? '0.75rem' : '0',
-                    marginTop: item.border ? '0.5rem' : '0',
-                    transition: 'transform 0.3s cubic-bezier(0.2, 0, 0.2, 1), color 0.3s',
-                    cursor: 'default'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.transform = 'translateX(8px)';
-                    e.currentTarget.children[1].style.transform = 'rotate(90deg)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.transform = 'translateX(0)';
-                    e.currentTarget.children[1].style.transform = 'rotate(0)';
-                  }}
-                >
-                  <span>{item.name}</span>
-                  <span style={{ color: 'var(--accent)', transition: 'transform 0.3s ease' }}>+</span>
+          {/* CAPABILITIES */}
+          <div className="about-fade" style={{ flex: 1, maxWidth: '850px' }}>
+            <h3 className="display-font-about" style={{ fontSize: '2rem', marginBottom: '2rem', letterSpacing: '-0.02em' }}>CORE CAPABILITIES</h3>
+            <div style={{ borderTop: '2px solid rgba(0,0,0,1)' }}>
+              {capabilities.map((cap, i) => (
+                <div key={i} className="cap-row" style={{ borderBottom: '1px solid rgba(0,0,0,0.1)', padding: '1.5rem 0', position: 'relative' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <div style={{ display: 'flex', gap: '2rem', alignItems: 'baseline' }}>
+                      <span style={{ fontSize: '0.9rem', fontWeight: 600, color: 'var(--text-secondary)' }}>{cap.num}</span>
+                      <span className="display-font-about" style={{ fontSize: 'clamp(1.5rem, 2.5vw, 2.5rem)', letterSpacing: '-0.01em' }}>{cap.title}</span>
+                    </div>
+                    <span className="cap-icon display-font-about" style={{ fontSize: '2rem', lineHeight: 1 }}>+</span>
+                  </div>
+                  <div className="cap-desc">
+                    <p style={{ fontSize: '1.1rem', fontWeight: 500, color: 'var(--text-secondary)', marginLeft: '3.5rem', maxWidth: '80%' }}>
+                      {cap.desc}
+                    </p>
+                  </div>
                 </div>
               ))}
             </div>
@@ -146,21 +178,26 @@ export default function About() {
 
       </div>
 
-      {/* Transition to Contact */}
-      <div style={{ minHeight: '40vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center', padding: '2rem 3rem 12rem' }}>
-        <h2 className="text-huge about-reveal" style={{ fontSize: 'clamp(3rem, 7vw, 7rem)', lineHeight: 1 }}>
-          DESIGN.<br/>BUILD.<br/>REFINE.
-        </h2>
+      {/* MARQUEE */}
+      <div style={{ width: '100%', overflow: 'hidden', borderTop: '1px solid rgba(0,0,0,0.1)', borderBottom: '1px solid rgba(0,0,0,0.1)', padding: '1.5rem 0', display: 'flex', whiteSpace: 'nowrap', backgroundColor: 'var(--bg-color)', marginBottom: '4rem' }}>
+        <div className="marquee-inner" style={{ display: 'flex', gap: '2rem' }}>
+          {[...Array(5)].map((_, i) => (
+            <div key={i} style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
+              <span className="display-font-about" style={{ fontSize: '1.5rem', letterSpacing: '0.05em' }}>SHLOK SHINDE</span>
+              <span style={{ fontSize: '1.5rem', color: 'rgba(0,0,0,0.2)' }}>—</span>
+              <span className="display-font-about" style={{ fontSize: '1.5rem', letterSpacing: '0.05em' }}>B.TECH IT</span>
+              <span style={{ fontSize: '1.5rem', color: 'rgba(0,0,0,0.2)' }}>—</span>
+              <span className="display-font-about" style={{ fontSize: '1.5rem', letterSpacing: '0.05em' }}>MUMBAI</span>
+              <span style={{ fontSize: '1.5rem', color: 'rgba(0,0,0,0.2)' }}>—</span>
+              <span className="display-font-about" style={{ fontSize: '1.5rem', letterSpacing: '0.05em' }}>DIGITAL PRODUCT DESIGN</span>
+              <span style={{ fontSize: '1.5rem', color: 'rgba(0,0,0,0.2)' }}>—</span>
+              <span className="display-font-about" style={{ fontSize: '1.5rem', letterSpacing: '0.05em' }}>CREATIVE DEVELOPMENT</span>
+              <span style={{ fontSize: '1.5rem', color: 'rgba(0,0,0,0.2)' }}>—</span>
+            </div>
+          ))}
+        </div>
       </div>
 
-      <style dangerouslySetInnerHTML={{__html: `
-        @media (max-width: 1024px) {
-          .about-grid { display: flex !important; flexDirection: column !important; padding: 4rem 1.5rem 6rem !important; gap: 4rem !important; flex-wrap: wrap !important; }
-          .about-left { gridColumn: auto !important; width: 100% !important; }
-          .about-right { gridColumn: auto !important; width: 100% !important; }
-          .about-left > div { flex-direction: column !important; gap: 2rem !important; }
-        }
-      `}} />
     </section>
   );
 }

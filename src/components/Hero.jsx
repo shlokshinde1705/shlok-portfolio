@@ -58,7 +58,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section ref={containerRef} id="hero" style={{ position: 'relative', minHeight: '100vh', width: '100%', display: 'flex', alignItems: 'center', overflow: 'hidden' }}>
+    <section ref={containerRef} id="hero" style={{ position: 'relative', height: '100vh', width: '100vw', display: 'flex', alignItems: 'center', overflow: 'hidden' }}>
       
       {/* IDENTITY METADATA (Upper Right Whitespace) */}
       <div className="hero-fade-in" style={{ position: 'absolute', top: '3rem', right: '3rem', zIndex: 10, textAlign: 'right', pointerEvents: 'none' }}>
@@ -77,7 +77,7 @@ export default function Hero() {
       </div>
 
       {/* PORTRAIT (Z-Index 5) */}
-      <div className="hero-portrait" style={{ position: 'absolute', right: '10vw', bottom: '-18vh', height: '105vh', width: 'auto', zIndex: 5, pointerEvents: 'none', display: 'flex', alignItems: 'flex-end', justifyContent: 'flex-end' }}>
+      <div style={{ position: 'absolute', right: '10vw', bottom: '-18vh', height: '105vh', width: 'auto', zIndex: 5, pointerEvents: 'none', display: 'flex', alignItems: 'flex-end', justifyContent: 'flex-end' }}>
         <img 
           ref={portraitRef}
           src="/shlok-portrait.png" 
@@ -104,7 +104,7 @@ export default function Hero() {
 
       {/* BOTTOM LEFT INFO */}
       <div className="hero-fade-in" style={{ position: 'absolute', bottom: '4rem', left: '3rem', zIndex: 10 }}>
-        <p className="text-label" style={{ color: 'var(--text-color)' }}>DIGITAL PRODUCT<br/>DESIGN A- CODE</p>
+        <p className="text-label" style={{ color: 'var(--text-color)' }}>DIGITAL PRODUCT<br/>DESIGN × CODE</p>
       </div>
 
       {/* EXPLORE BUTTON */}
@@ -120,25 +120,12 @@ export default function Hero() {
       </div>
 
       {/* SCROLL INDICATOR (Bottom Right Whitespace) */}
-      <div className="hero-fade-in scroll-indicator-mobile" style={{ position: 'absolute', bottom: '3rem', right: '2rem', zIndex: 10, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem' }}>
+      <div className="hero-fade-in" style={{ position: 'absolute', bottom: '3rem', right: '2rem', zIndex: 10, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem' }}>
         <p className="text-label" style={{ color: 'var(--text-secondary)', margin: 0, fontSize: '0.65rem' }}>SCROLL TO DISCOVER</p>
         <div style={{ width: '1px', height: '30px', backgroundColor: 'rgba(18,18,18,0.1)', position: 'relative', overflow: 'hidden' }}>
            <div className="scroll-pulse" style={{ width: '100%', height: '50%', backgroundColor: '#121212', position: 'absolute', top: 0 }} />
         </div>
       </div>
-
-      <style dangerouslySetInnerHTML={{__html: `
-        @media (max-width: 1024px) {
-          .hero-portrait { height: 80vh !important; right: -5vw !important; bottom: 0 !important; }
-        }
-        @media (max-width: 768px) {
-          .hero-portrait { z-index: 0 !important; opacity: 0.3 !important; height: 70vh !important; right: -15vw !important; }
-          .hero-title-line { padding-left: 0 !important; }
-          .hero-title-line[style] { visibility: visible !important; }
-          .hero-fade-in[style*="left: 22vw"] { left: 3rem !important; bottom: 8rem !important; }
-          .scroll-indicator-mobile { display: none !important; }
-        }
-      `}} />
     </section>
   );
 }

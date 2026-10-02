@@ -56,9 +56,9 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="nav-container" style={{ position: 'fixed', top: 0, left: 0, width: '100%', padding: '2rem 3rem', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', zIndex: 100, mixBlendMode: 'difference', color: '#fff' }}>
+    <nav style={{ position: 'fixed', top: 0, left: 0, width: '100%', padding: '2rem 3rem', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', zIndex: 100, mixBlendMode: 'difference', color: '#fff' }}>
       <div style={{ fontSize: '1rem', fontWeight: 700, letterSpacing: '-0.02em' }}>SHLOK SHINDE</div>
-      <div className="nav-links" style={{ display: 'flex', gap: '2rem' }}>
+      <div style={{ display: 'flex', gap: '2rem' }}>
         {['WORK', 'PROCESS', 'ABOUT', 'CONTACT'].map((item) => {
           const id = item.toLowerCase();
           const isActive = activeId === id || (id === 'work' && (activeId === 'nova' || activeId === 'pulse' || activeId === 'arc'));
@@ -73,12 +73,6 @@ export default function Navbar() {
           );
         })}
       </div>
-      <style dangerouslySetInnerHTML={{__html: `
-        @media (max-width: 768px) {
-          .nav-container { padding: 1.5rem 1rem !important; flex-direction: column !important; align-items: center !important; gap: 1rem !important; }
-          .nav-links { gap: 1rem !important; flex-wrap: wrap !important; justify-content: center !important; }
-        }
-      `}} />
     </nav>
   );
 }

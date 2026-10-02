@@ -132,7 +132,7 @@ export default function ProjectNova() {
       ========================================== */}
       <div 
         ref={uiRef} 
-        className="nova-ui-container"
+        className="nova-ui-container" data-cursor-bg="dark"
         style={{ 
           width: '90vw', 
           maxWidth: '1500px', 
@@ -320,3 +320,4 @@ export default function ProjectNova() {
     </section>
   );
 }
+
