@@ -76,7 +76,7 @@ export default function WorkIntro() {
   }, []);
 
   return (
-    <section ref={containerRef} id="work" style={{ position: 'relative', zIndex: 20, padding: '15rem 3rem 10rem', backgroundColor: 'var(--bg-color)', minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', pointerEvents: 'none', overflow: 'hidden' }}>
+    <section ref={containerRef} id="work" style={{ position: 'relative', zIndex: 20, padding: '45px 3rem 10rem', backgroundColor: 'var(--bg-color)', minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', pointerEvents: 'none', overflow: 'hidden' }}>
       
       {/* Background Visual System (Technical Grid & Geometric Form) */}
       <div className="work-visuals" ref={visualsRef} style={{ position: 'absolute', right: '-5vw', top: '20vh', width: '60vw', height: '60vw', pointerEvents: 'none', zIndex: -1, opacity: 0 }}>

@@ -29,13 +29,12 @@ export default function Hero() {
         }
       });
       
-      // Cinematic separation
-      tl.to(portraitRef.current, { scale: 1.08, y: '-5vh', opacity: 0, duration: 1.5 }, 0);
-      tl.to('.word-build', { y: -80, opacity: 0, duration: 1 }, 0);
-      tl.to('.word-things', { x: -60, opacity: 0, duration: 1 }, 0);
-      tl.to('.word-that', { x: -100, opacity: 0, duration: 1 }, 0);
-      tl.to('.word-move', { y: 80, opacity: 0, duration: 1 }, 0);
-      tl.to('.hero-fade-in', { opacity: 0, y: -20, duration: 0.5 }, 0);
+      // Cinematic separation (preserve visibility during scroll)
+      tl.to(portraitRef.current, { scale: 1.04, y: '-3vh', duration: 1.5 }, 0);
+      tl.to('.word-build', { y: -50, duration: 1 }, 0);
+      tl.to('.word-things', { x: -40, duration: 1 }, 0);
+      tl.to('.word-that', { x: -60, duration: 1 }, 0);
+      tl.to('.word-move', { y: 50, duration: 1 }, 0);
     }, containerRef);
 
     // Subtle Parallax (12px X, 8px Y)

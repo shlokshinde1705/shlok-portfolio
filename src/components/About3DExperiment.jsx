@@ -9,15 +9,21 @@ const MainPortraitWithPanels = () => {
   const planesRef = useRef(null);
   
   useFrame((state) => {
+    const elapsed = state.clock.getElapsedTime();
+    const floatY = Math.sin(elapsed * 1.25) * 0.04;
+    const floatX = Math.cos(elapsed * 0.85) * 0.01;
+    const floatRotZ = Math.sin(elapsed * 0.95) * 0.003;
+
     if (ref.current) {
-      ref.current.position.x = THREE.MathUtils.lerp(ref.current.position.x, state.pointer.x * 0.05, 0.05);
-      ref.current.position.y = THREE.MathUtils.lerp(ref.current.position.y, state.pointer.y * 0.05, 0.05);
-      ref.current.rotation.y = THREE.MathUtils.lerp(ref.current.rotation.y, state.pointer.x * 0.02, 0.05);
-      ref.current.rotation.x = THREE.MathUtils.lerp(ref.current.rotation.x, -state.pointer.y * 0.02, 0.05);
+      ref.current.position.x = THREE.MathUtils.lerp(ref.current.position.x, state.pointer.x * 0.02 + floatX, 0.05);
+      ref.current.position.y = THREE.MathUtils.lerp(ref.current.position.y, state.pointer.y * 0.02 + floatY, 0.05);
+      ref.current.rotation.y = THREE.MathUtils.lerp(ref.current.rotation.y, state.pointer.x * 0.01, 0.05);
+      ref.current.rotation.x = THREE.MathUtils.lerp(ref.current.rotation.x, -state.pointer.y * 0.01, 0.05);
+      ref.current.rotation.z = floatRotZ;
     }
     if (planesRef.current) {
-      planesRef.current.position.x = THREE.MathUtils.lerp(planesRef.current.position.x, state.pointer.x * 0.02, 0.05);
-      planesRef.current.position.y = THREE.MathUtils.lerp(planesRef.current.position.y, state.pointer.y * 0.02, 0.05);
+      planesRef.current.position.x = THREE.MathUtils.lerp(planesRef.current.position.x, state.pointer.x * 0.01, 0.05);
+      planesRef.current.position.y = THREE.MathUtils.lerp(planesRef.current.position.y, state.pointer.y * 0.01, 0.05);
     }
   });
 
@@ -83,9 +89,12 @@ const SculpturalForms = () => {
   ], false, 'chordal', 0.5), []);
 
   useFrame((state) => {
+    const elapsed = state.clock.getElapsedTime();
+    const floatY = Math.sin(elapsed * 1.25 - 0.3) * 0.03;
+    const floatX = Math.cos(elapsed * 0.85 - 0.3) * 0.01;
     if (ref.current) {
-      ref.current.position.x = THREE.MathUtils.lerp(ref.current.position.x, state.pointer.x * 0.08, 0.05);
-      ref.current.position.y = THREE.MathUtils.lerp(ref.current.position.y, state.pointer.y * 0.08, 0.05);
+      ref.current.position.x = THREE.MathUtils.lerp(ref.current.position.x, state.pointer.x * 0.04 + floatX, 0.05);
+      ref.current.position.y = THREE.MathUtils.lerp(ref.current.position.y, state.pointer.y * 0.04 + floatY, 0.05);
     }
   });
 
@@ -130,9 +139,12 @@ const ThinWires = () => {
   ]).getPoints(100).map(p => new THREE.Vector3(p.x, p.y, p.z)), []);
 
   useFrame((state) => {
+    const elapsed = state.clock.getElapsedTime();
+    const floatY = Math.sin(elapsed * 0.7) * 0.015;
     if (ref.current) {
-      ref.current.position.x = THREE.MathUtils.lerp(ref.current.position.x, state.pointer.x * 0.04, 0.05);
-      ref.current.position.y = THREE.MathUtils.lerp(ref.current.position.y, state.pointer.y * 0.04, 0.05);
+      ref.current.position.x = THREE.MathUtils.lerp(ref.current.position.x, state.pointer.x * 0.03, 0.05);
+      ref.current.position.y = THREE.MathUtils.lerp(ref.current.position.y, state.pointer.y * 0.03 + floatY, 0.05);
+      ref.current.rotation.z = Math.sin(elapsed * 0.5) * 0.005;
     }
   });
   
@@ -148,9 +160,11 @@ const FloatingFragments = () => {
   const ref = useRef(null);
   
   useFrame((state) => {
+    const elapsed = state.clock.getElapsedTime();
+    const floatY = Math.sin(elapsed * 0.8) * 0.025;
     if (ref.current) {
-      ref.current.position.x = THREE.MathUtils.lerp(ref.current.position.x, state.pointer.x * 0.1, 0.05);
-      ref.current.position.y = THREE.MathUtils.lerp(ref.current.position.y, state.pointer.y * 0.1, 0.05);
+      ref.current.position.x = THREE.MathUtils.lerp(ref.current.position.x, state.pointer.x * 0.05, 0.05);
+      ref.current.position.y = THREE.MathUtils.lerp(ref.current.position.y, state.pointer.y * 0.05 + floatY, 0.05);
     }
   });
   

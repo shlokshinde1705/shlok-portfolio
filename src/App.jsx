@@ -7,6 +7,7 @@ import CustomCursor from './components/CustomCursor';
 import Navbar from './components/Navbar';
 import ScrollProgress from './components/ScrollProgress';
 import Hero from './components/Hero';
+import IdentityToSelectedWorkTransition from './components/IdentityToSelectedWorkTransition';
 import WorkIntro from './components/WorkIntro';
 import ProjectNova from './components/ProjectNova';
 import ProjectPulse from './components/ProjectPulse';
@@ -16,9 +17,11 @@ import About from './components/About';
 import Contact from './components/Contact';
 import './styles/global.css';
 
-import About3DExperiment from './components/About3DExperiment';
-
-gsap.registerPlugin(ScrollTrigger); if (window.history.scrollRestoration) { window.history.scrollRestoration = 'manual'; } window.scrollTo(0, 0);
+gsap.registerPlugin(ScrollTrigger);
+if (window.history.scrollRestoration) {
+  window.history.scrollRestoration = 'manual';
+}
+window.scrollTo(0, 0);
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -42,7 +45,7 @@ function App() {
     gsap.ticker.lagSmoothing(0);
 
     return () => {
-      if(window.lenis) window.lenis.destroy();
+      if (window.lenis) window.lenis.destroy();
       window.lenis = null;
       gsap.ticker.remove(lenis.raf);
     };
@@ -53,6 +56,13 @@ function App() {
       requestAnimationFrame(() => {
         setTimeout(() => {
           ScrollTrigger.refresh();
+          if (
+            window.location.hash &&
+            window.lenis &&
+            performance.getEntriesByType('navigation')[0]?.type !== 'reload'
+          ) {
+            window.lenis.scrollTo(window.location.hash, { immediate: true });
+          }
         }, 100);
       });
     }
@@ -61,9 +71,20 @@ function App() {
   return (
     <>
       <CustomCursor />
-      {loading && <Preloader onComplete={() => { setLoading(false); }} />}
+      <ScrollProgress />
+      {loading && <Preloader onComplete={() => setLoading(false)} />}
+
       <main>
-        {!loading && <About3DExperiment />}
+        <Navbar />
+        <Hero />
+        <IdentityToSelectedWorkTransition />
+        <WorkIntro />
+        <ProjectNova />
+        <ProjectPulse />
+        <ProjectArc />
+        <Process />
+        <About />
+        <Contact />
       </main>
     </>
   );

@@ -50,7 +50,7 @@ export default function Contact() {
         
         <div className="contact-reveal" style={{ pointerEvents: 'auto', display: 'inline-block' }}>
           <Magnetic intensity={0.5} scale={1.05}>
-            <a href="mailto:hello@shlokshinde.com" className="contact-cta" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--accent)', fontSize: '1.5rem', fontWeight: 600, letterSpacing: '0.1em', textDecoration: 'none' }}>
+            <a href="mailto:shlokshinde1705@gmail.com" className="contact-cta" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--accent)', fontSize: '1.5rem', fontWeight: 600, letterSpacing: '0.1em', textDecoration: 'none' }}>
               LET'S TALK
               <ArrowUpRight size={24} className="contact-arrow" style={{ transition: 'transform 0.3s' }} />
             </a>
@@ -61,9 +61,9 @@ export default function Contact() {
       <footer style={{ position: 'absolute', bottom: '2rem', width: '100%', padding: '0 3rem', display: 'flex', justifyContent: 'space-between', zIndex: 10, fontSize: '0.75rem', fontWeight: 600, letterSpacing: '0.05em', color: '#888' }}>
         <div>SHLOK SHINDE<br/>MUMBAI, INDIA</div>
         <div style={{ display: 'flex', gap: '2rem' }}>
-          <a href="mailto:hello@shlokshinde.com" style={{ color: '#fff', textDecoration: 'none' }}>EMAIL</a>
-          <a href="#" style={{ color: '#fff', textDecoration: 'none' }}>LINKEDIN</a>
-          <a href="#" style={{ color: '#fff', textDecoration: 'none' }}>GITHUB</a>
+          <a href="mailto:shlokshinde1705@gmail.com" style={{ color: '#fff', textDecoration: 'none' }}>EMAIL</a>
+          <a href="https://www.linkedin.com/in/shlok-shinde-b293b12a4/" target="_blank" rel="noopener noreferrer" style={{ color: '#fff', textDecoration: 'none' }}>LINKEDIN</a>
+          <a href="https://github.com/shlokshinde1705" target="_blank" rel="noopener noreferrer" style={{ color: '#fff', textDecoration: 'none' }}>GITHUB</a>
         </div>
         <div>2026</div>
       </footer>
