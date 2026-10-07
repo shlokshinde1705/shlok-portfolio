@@ -9,13 +9,11 @@ gsap.registerPlugin(ScrollTrigger);
 // SHLOK SHINDE — IDENTITY — SELECTED WORK — 01 →
 const TickerBlock = ({ blockId, isAriaHidden = false }) => (
   <div className="identity-work-ticker-block" aria-hidden={isAriaHidden} data-block={blockId}>
+    <span className="ticker-item-label">DESIGNING DIGITAL EXPERIENCES</span>
+    <span className="ticker-sep">—</span>
+    <span className="ticker-item-label">TURNING COMPLEX IDEAS INTO SIMPLE, INTUITIVE INTERACTIONS</span>
+    <span className="ticker-sep">—</span>
     <span className="ticker-item-name">SHLOK SHINDE</span>
-    <span className="ticker-sep">—</span>
-    <span className="ticker-item-label">IDENTITY</span>
-    <span className="ticker-sep">—</span>
-    <span className="ticker-item-label">SELECTED WORK</span>
-    <span className="ticker-sep">—</span>
-    <span className="ticker-item-num">01</span>
     <span className="ticker-arrow">→</span>
     <span className="ticker-divider" />
   </div>
