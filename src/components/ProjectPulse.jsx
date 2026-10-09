@@ -68,7 +68,7 @@ export default function ProjectPulse() {
   }, []);
 
   return (
-    <section id="pulse" ref={containerRef} style={{ backgroundColor: '#e5e4df', position: 'relative' }}>
+    <section id="pulse" ref={containerRef} style={{ backgroundColor: '#e5e4df', position: 'relative', paddingBottom: '60px' }}>
       
       <div className="pulse-interactive-section" style={{ height: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', position: 'relative', overflow: 'hidden', padding: '0 3rem' }}>
         
@@ -81,8 +81,8 @@ export default function ProjectPulse() {
           </div>
 
           {/* Dashboard Product UI Wrapper for entrance animation */}
-          <div className="pulse-ui-entrance" data-cursor-bg="dark">
-            <div ref={uiRef} style={{ width: '100%', height: '65vh', backgroundColor: '#0a0a0a', borderRadius: '12px', display: 'flex', overflow: 'hidden', color: '#e0e0e0', boxShadow: '0 40px 100px rgba(0,0,0,0.15)', border: '1px solid #222' }}>
+          <div className="pulse-ui-entrance">
+            <div ref={uiRef} style={{ width: '100%', minHeight: '65vh', height: 'auto', backgroundColor: '#0a0a0a', borderRadius: '12px', display: 'flex', overflow: 'hidden', color: '#e0e0e0', boxShadow: '0 40px 100px rgba(0,0,0,0.15)', border: '1px solid #222' }}>
           
           {/* Sidebar */}
           <div style={{ width: '80px', backgroundColor: '#111', borderRight: '1px solid #222', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '2rem 0', gap: '2rem' }}>
@@ -94,9 +94,9 @@ export default function ProjectPulse() {
           </div>
 
           {/* Main Content Area */}
-          <div style={{ flex: 1, padding: '3rem', display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+          <div style={{ flex: 1, padding: '2rem 3rem', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
             
-            <div style={{ display: 'flex', gap: '2rem', height: '40%' }}>
+            <div style={{ display: 'flex', gap: '2rem', height: 'max-content', flexShrink: 0 }}>
               {/* Health */}
               <div className="pulse-health" style={{ flex: 1, backgroundColor: '#161616', borderRadius: '8px', border: '1px solid #2a2a2a', padding: '2rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                 <p style={{ fontSize: '0.75rem', color: '#888', letterSpacing: '0.05em' }}>SYSTEM HEALTH</p>
@@ -107,15 +107,15 @@ export default function ProjectPulse() {
               </div>
               
               {/* Risk Watch */}
-              <div className="pulse-risk" style={{ flex: 1.5, backgroundColor: '#161616', borderRadius: '8px', border: '1px solid #2a2a2a', padding: '2rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                <p style={{ fontSize: '0.75rem', color: '#888', letterSpacing: '0.05em' }}>RISK WATCH</p>
+              <div className="pulse-risk" style={{ flex: 1.5, backgroundColor: '#161616', borderRadius: '8px', border: '1px solid #2a2a2a', padding: '2rem', display: 'flex', flexDirection: 'column', gap: '1.25rem', overflow: 'hidden' }}>
+                <p style={{ fontSize: '0.75rem', color: '#888', letterSpacing: '0.05em', margin: 0 }}>RISK WATCH</p>
                 <div style={{ borderLeft: '3px solid var(--accent)', paddingLeft: '1rem' }}>
-                  <p style={{ fontSize: '0.85rem', color: '#fff', fontWeight: 600 }}>ORBIT</p>
-                  <p style={{ fontSize: '0.75rem', color: '#888', marginTop: '0.25rem' }}>Launch dependency blocked by API changes.</p>
+                  <p style={{ fontSize: '0.85rem', color: '#fff', fontWeight: 600, margin: 0 }}>ORBIT</p>
+                  <p style={{ fontSize: '0.75rem', color: '#888', marginTop: '0.25rem', marginBottom: 0 }}>Launch dependency blocked by API changes.</p>
                 </div>
                 <div style={{ borderLeft: '3px solid #ff9800', paddingLeft: '1rem' }}>
-                  <p style={{ fontSize: '0.85rem', color: '#fff', fontWeight: 600 }}>LUMA</p>
-                  <p style={{ fontSize: '0.75rem', color: '#888', marginTop: '0.25rem' }}>Design review pending. Potential delay.</p>
+                  <p style={{ fontSize: '0.85rem', color: '#fff', fontWeight: 600, margin: 0 }}>LUMA</p>
+                  <p style={{ fontSize: '0.75rem', color: '#888', marginTop: '0.25rem', marginBottom: 0 }}>Design review pending. Potential delay.</p>
                 </div>
               </div>
             </div>

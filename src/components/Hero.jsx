@@ -11,30 +11,38 @@ export default function Hero() {
   const portraitRef = useRef(null);
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Intro animations
-      gsap.to('.hero-title-inner', { y: 0, duration: 1.2, ease: 'power4.out', stagger: 0.1, delay: 0.5 });
-      gsap.fromTo('.hero-fade-in', { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 1, ease: 'power3.out', stagger: 0.2, delay: 1 });
-      
-      // Portrait fade in
-      gsap.fromTo(portraitRef.current, { opacity: 0, scale: 0.95, y: 20 }, { opacity: 1, scale: 1, y: 0, duration: 1.5, ease: 'power3.out', delay: 1.2 });
-
-      // Scroll Parallax Transition
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: 'top top',
-          end: 'bottom top',
-          scrub: 1
+    const ctx = gsap.context((self) => {
+      // 1. Create a master intro timeline for the Hero
+      const introTl = gsap.timeline({
+        onComplete: () => {
+          // 2. ONLY create the ScrollTrigger after the intro is completely finished.
+          // This prevents ScrollTrigger from permanently locking the mid-animation 'y' and 'scale' values.
+          self.add(() => {
+            const tl = gsap.timeline({
+              scrollTrigger: {
+                trigger: containerRef.current,
+                start: 'top top',
+                end: 'bottom top',
+                scrub: 1
+              }
+            });
+            
+            // Cinematic separation (preserve visibility during scroll)
+            tl.to(portraitRef.current, { scale: 1.04, y: '-3vh', duration: 1.5 }, 0);
+            tl.to('.word-build', { y: -50, duration: 1 }, 0);
+            tl.to('.word-things', { x: -40, duration: 1 }, 0);
+            tl.to('.word-that', { x: -60, duration: 1 }, 0);
+            tl.to('.word-move', { y: 50, duration: 1 }, 0);
+          });
         }
       });
-      
-      // Cinematic separation (preserve visibility during scroll)
-      tl.to(portraitRef.current, { scale: 1.04, y: '-3vh', duration: 1.5 }, 0);
-      tl.to('.word-build', { y: -50, duration: 1 }, 0);
-      tl.to('.word-things', { x: -40, duration: 1 }, 0);
-      tl.to('.word-that', { x: -60, duration: 1 }, 0);
-      tl.to('.word-move', { y: 50, duration: 1 }, 0);
+
+      // 3. Accelerate the intro animations so they finish BEFORE the preloader curtains open at 1.8s.
+      // This ensures the Hero is perfectly stable and not "half-animated" when revealed.
+      introTl.to('.hero-title-inner', { y: 0, duration: 1.2, ease: 'power4.out', stagger: 0.1 }, 0.2);
+      introTl.fromTo('.hero-fade-in', { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 1, ease: 'power3.out', stagger: 0.2 }, 0.4);
+      introTl.fromTo(portraitRef.current, { opacity: 0, scale: 0.95, y: 20 }, { opacity: 1, scale: 1, y: 0, duration: 1.2, ease: 'power3.out' }, 0.5);
+
     }, containerRef);
 
     // Subtle Parallax (12px X, 8px Y)

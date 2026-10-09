@@ -63,7 +63,7 @@ export default function ProjectNova() {
   }, []);
 
   return (
-    <section id="nova" ref={containerRef} style={{ backgroundColor: '#e5e4df', position: 'relative', padding: '8rem 3rem', display: 'flex', flexDirection: 'column', alignItems: 'center', overflow: 'hidden' }}>
+    <section id="nova" ref={containerRef} style={{ backgroundColor: '#e5e4df', position: 'relative', padding: '8rem 3rem 0 3rem', display: 'flex', flexDirection: 'column', alignItems: 'center', overflow: 'hidden' }}>
       
       {/* ==========================================
           HEADER & METADATA
@@ -144,7 +144,7 @@ export default function ProjectNova() {
           display: 'flex', 
           overflow: 'hidden', 
           color: '#e0e0e0', 
-          boxShadow: '0 40px 100px rgba(0,0,0,0.15)' 
+          boxShadow: '0 40px 100px rgba(0,0,0,0.15)'
         }}
       >
         
@@ -297,18 +297,17 @@ export default function ProjectNova() {
           .nova-meta-row > div { width: 100% !important; }
           .nova-meta-details { flex-wrap: wrap; gap: 2rem !important; }
 
-        @keyframes novaPulse { 0% { border-color: #1a1a1a; box-shadow: inset 0 0 0 rgba(255,100,0,0); } 50% { border-color: rgba(255,100,0,0.3); box-shadow: inset 0 0 20px rgba(255,100,0,0.05); } 100% { border-color: #1a1a1a; box-shadow: inset 0 0 0 rgba(255,100,0,0); } }
-        .nova-evidence-box { animation: novaPulse 4s infinite ease-in-out; }
-        @keyframes novaBlink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
-        .nova-blink { animation: novaBlink 1s infinite; }
-        @keyframes novaShimmer { 0% { left: -100%; } 20% { left: 200%; } 100% { left: 200%; } }
-        .nova-shimmer { animation: novaShimmer 4s infinite linear; }
-        @keyframes novaPulseIcon { 0%, 100% { opacity: 0.5; transform: scale(1); } 50% { opacity: 1; transform: scale(1.1); } }
-        .nova-pulse-icon { animation: novaPulseIcon 3s infinite ease-in-out; }
-        @keyframes novaDotPulse { 0%, 100% { opacity: 0.2; transform: scale(0.8); } 50% { opacity: 1; transform: scale(1.2); } }
-        .nova-pulse-dot { animation: novaDotPulse 2s infinite ease-in-out; }
+          @keyframes novaPulse { 0% { border-color: #1a1a1a; box-shadow: inset 0 0 0 rgba(255,100,0,0); } 50% { border-color: rgba(255,100,0,0.3); box-shadow: inset 0 0 20px rgba(255,100,0,0.05); } 100% { border-color: #1a1a1a; box-shadow: inset 0 0 0 rgba(255,100,0,0); } }
+          .nova-evidence-box { animation: novaPulse 4s infinite ease-in-out; }
+          @keyframes novaBlink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+          .nova-blink { animation: novaBlink 1s infinite; }
+          @keyframes novaShimmer { 0% { left: -100%; } 20% { left: 200%; } 100% { left: 200%; } }
+          .nova-shimmer { animation: novaShimmer 4s infinite linear; }
+          @keyframes novaPulseIcon { 0%, 100% { opacity: 0.5; transform: scale(1); } 50% { opacity: 1; transform: scale(1.1); } }
+          .nova-pulse-icon { animation: novaPulseIcon 3s infinite ease-in-out; }
+          @keyframes novaDotPulse { 0%, 100% { opacity: 0.2; transform: scale(0.8); } 50% { opacity: 1; transform: scale(1.2); } }
+          .nova-pulse-dot { animation: novaDotPulse 2s infinite ease-in-out; }
 
-          
           .nova-ui-label { display: none !important; }
           
           .nova-ui-container { flex-direction: column; height: auto !important; min-height: auto !important; overflow-y: auto !important; }
@@ -316,6 +315,9 @@ export default function ProjectNova() {
           .nova-ai-panel { width: 100%; min-width: 100%; border-left: none; border-top: 1px solid #1a1a1a; }
         }
       `}} />
+
+      {/* Strict physical spacer to guarantee inter-project gap without relying on margin/padding flow */}
+      <div style={{ width: '100%', height: '70px', flexShrink: 0 }}></div>
 
     </section>
   );
